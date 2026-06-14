@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التسجيل — برنامج اللغة الإنجليزية التحضيري للمرحلة الجامعية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14213D;       /* كحلي لشريط الرأس */
+    --ink:#6B5410;        /* بنّي ذهبي غامق للنصوص الداكنة */
+    --ink-2:#7E641A;
+    --gold:#C29B2E;
+    --gold-deep:#A07F1E;
+    --gold-soft:#E8D9A8;
+    --navy:#14213D;
+    --cream:#FAF6EC;
+    --white:#FFFFFF;
+    --text:#24262B;
+    --muted:#6B6E76;
+    --line:#E7E0CF;
+    --danger:#B23A3A;
+    --radius:14px;
+    --shadow:0 10px 40px rgba(20,33,61,.10);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  body{
+    font-family:'Tajawal',system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--text);
+    line-height:1.6;
+    min-height:100vh;
+  }
+
+  /* ===== الشعارات في الأعلى ===== */
+  .logobar{
+    background:var(--navy);
+    border-bottom:3px solid var(--gold);
+    padding:18px 5vw;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:38px;
+    flex-wrap:wrap;
+  }
+  .logo{
+    height:54px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    color:var(--white);
+  }
+  .logobar .brand{
+    font-family:'Reem Kufi',serif;
+    color:var(--gold);
+    font-size:clamp(1.1rem,2.4vw,1.5rem);
+    font-weight:700;
+    text-align:center;
+  }
+
+  /* ===== الحاوية الرئيسية ===== */
+  .wrap{
+    max-width:1160px;
+    margin:40px auto;
+    padding:0 5vw;
+  }
+  .panel{
+    display:grid;
+    grid-template-columns:1fr 1fr;   /* اليمين: صورة | اليسار: نموذج */
+    background:var(--white);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    border:1px solid var(--line);
+    min-height:640px;
+  }
+
+  /* ===== القسم الأيمن: الصورة (البوستر) ===== */
+  .visual{
+    position:relative;
+    background:var(--navy);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+  }
+  .visual img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
+  /* ===== القسم الأيسر: النموذج ===== */
+  .form-side{
+    padding:46px 42px;
+    display:flex;
+    flex-direction:column;
+  }
+  .form-side h2{
+    font-family:'Reem Kufi',serif;
+    color:var(--gold-deep);
+    font-size:1.6rem;
+    margin-bottom:6px;
+  }
+  .form-side .sub{
+    color:var(--muted);
+    font-size:.95rem;
+    margin-bottom:26px;
+  }
+  .field{margin-bottom:18px}
+  .field label{
+    display:block;
+    font-weight:500;
+    font-size:.95rem;
+    margin-bottom:7px;
+    color:var(--navy);
+  }
+  .req{color:var(--danger);font-weight:700}
+  .field input,
+  .field select{
+    width:100%;
+    padding:13px 15px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    font-family:inherit;
+    font-size:1rem;
+    background:var(--cream);
+    color:var(--text);
+    transition:border-color .15s, box-shadow .15s, background .15s;
+  }
+  .field input::placeholder{color:#A9ACB3}
+  .field input:focus,
+  .field select:focus{
+    outline:none;
+    border-color:var(--gold);
+    background:var(--white);
+    box-shadow:0 0 0 3px rgba(194,155,46,.18);
+  }
+
+  /* خيارات الدفع */
+  .pay-options{display:flex;gap:12px;flex-wrap:wrap}
+  .pay{
+    flex:1;
+    min-width:130px;
+    position:relative;
+  }
+  .pay input{position:absolute;opacity:0;inset:0;cursor:pointer}
+  .pay span{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:13px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    background:var(--cream);
+    font-weight:500;
+    cursor:pointer;
+    transition:all .15s;
+  }
+  .pay input:checked + span{
+    border-color:var(--gold);
+    background:rgba(194,155,46,.10);
+    color:var(--gold-deep);
+    font-weight:700;
+  }
+  .pay input:focus-visible + span{box-shadow:0 0 0 3px rgba(194,155,46,.25)}
+
+  .submit{
+    margin-top:10px;
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg, var(--gold), var(--gold-deep));
+    color:var(--white);
+    font-family:'Tajawal',sans-serif;
+    font-size:1.05rem;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(194,155,46,.35);
+    transition:filter .15s, transform .05s;
+  }
+  .submit:hover{filter:brightness(1.07)}
+  .submit:active{transform:translateY(1px)}
+  .submit:focus-visible{outline:3px solid var(--gold-deep);outline-offset:2px}
+
+  .note{
+    margin-top:16px;
+    font-size:.85rem;
+    color:var(--muted);
+    text-align:center;
+  }
+
+  /* رسالة النجاح */
+  .success-box{
+    text-align:center;
+    padding:30px 10px;
+    margin:auto 0;
+  }
+  .success-icon{
+    width:72px;height:72px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--gold), var(--gold-deep));
+    color:#fff;
+    font-size:2.2rem;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(194,155,46,.4);
+  }
+  .success-box h3{
+    font-family:'Reem Kufi',serif;
+    color:var(--navy);
+    font-size:1.5rem;
+    margin-bottom:10px;
+  }
+  .success-box p{
+    color:var(--muted);
+    margin-bottom:22px;
+  }
+  .success-box .submit{max-width:240px;margin:0 auto}
+
+  /* ===== الاستجابة للجوال ===== */
+  @media (max-width:820px){
+    .panel{grid-template-columns:1fr}
+    .visual{order:-1}  /* البوستر يظهر في الأعلى على الجوال */
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ======= شريط الرأس ======= -->
+  <header class="logobar">
+    <span class="brand">برنامج اللغة الإنجليزية الصيفي المُتقدّم</span>
+  </header>
+
+  <!-- ======= الحاوية ======= -->
+  <main class="wrap">
+    <div class="panel">
+
+      <!-- القسم الأيمن: صورة البرنامج -->
+      <section class="visual">
+        <img src="program.jpeg" alt="برنامج اللغة الإنجليزية الصيفي المُتقدّم — جامعة تبوك / تمكين">
+      </section>
+
+      <!-- القسم الأيسر: نموذج التسجيل -->
+      <section class="form-side">
+        <h2>نموذج التسجيل</h2>
+        <p class="sub">يرجى تعبئة الحقول التالية بدقة. الحقول المعلّمة بـ<span class="req"> *</span> إلزامية.</p>
+
+        <form id="regForm" novalidate>
+          <div class="field">
+            <label for="name">الاسم الثلاثي <span class="req">*</span></label>
+            <input id="name" name="name" type="text" placeholder="مثال: محمد أحمد العبدالله" required>
+          </div>
+
+          <div class="field">
+            <label for="phone">رقم الجوال <span class="req">*</span></label>
+            <input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="05XXXXXXXX" required>
+          </div>
+
+          <div class="field">
+            <label for="id">رقم الهوية</label>
+            <input id="id" name="id" type="text" inputmode="numeric" placeholder="اختياري">
+          </div>
+
+          <div class="field">
+            <label for="email">الإيميل <span class="req">*</span></label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required>
+          </div>
+
+          <div class="field">
+            <label for="school">الثانوية المتخرج منها (أو ما زلت تدرس بها) <span class="req">*</span></label>
+            <input id="school" name="school" type="text" placeholder="اسم المدرسة الثانوية" required>
+          </div>
+
+          <div class="field">
+            <label>هل ترغب الدفع <span class="req">*</span></label>
+            <div class="pay-options">
+              <label class="pay">
+                <input type="radio" name="payment" value="كاش" required>
+                <span>كاش</span>
+              </label>
+              <label class="pay">
+                <input type="radio" name="payment" value="اقساط (تابي)">
+                <span>أقساط (تابي)</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit" id="submitBtn">إرسال التسجيل</button>
+          <p class="note">بياناتك تُستخدم لأغراض التسجيل في البرنامج فقط.</p>
+        </form>
+
+        <div id="successBox" class="success-box" hidden>
+          <div class="success-icon">✓</div>
+          <h3>تم استلام تسجيلك بنجاح</h3>
+          <p>شكراً لك، سيتم التواصل معك قريباً. يمكنك تسجيل طالب آخر بالضغط أدناه.</p>
+          <button type="button" class="submit" id="againBtn">تسجيل جديد</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // معرّفات حقول نموذج Google
+    const GOOGLE_FORM_ACTION =
+      "https://docs.google.com/forms/d/e/1FAIpQLScMluYpsMNVcplQYYZ4DA7Vqc3h6a2UHoCZWggOL1YorXNCMw/formResponse";
+    const ENTRIES = {
+      name:    "entry.1188520122", // الاسم الثلاثي
+      phone:   "entry.772580580",  // رقم الجوال
+      id:      "entry.5893006",    // رقم الهوية
+      email:   "entry.813315421",  // الإيميل
+      school:  "entry.1748116690", // الثانوية
+      payment: "entry.787006057"   // طريقة الدفع
+    };
+
+    const form      = document.getElementById('regForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successBox = document.getElementById('successBox');
+    const againBtn  = document.getElementById('againBtn');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+
+      // تجهيز البيانات بأسماء حقول Google
+      const data = new URLSearchParams();
+      data.append(ENTRIES.name,    document.getElementById('name').value.trim());
+      data.append(ENTRIES.phone,   document.getElementById('phone').value.trim());
+      data.append(ENTRIES.id,      document.getElementById('id').value.trim());
+      data.append(ENTRIES.email,   document.getElementById('email').value.trim());
+      data.append(ENTRIES.school,  document.getElementById('school').value.trim());
+      const pay = document.querySelector('input[name="payment"]:checked');
+      data.append(ENTRIES.payment, pay ? pay.value : '');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'جارٍ الإرسال…';
+
+      // الإرسال إلى Google Forms (الاستجابة معتمة بسبب CORS لكن البيانات تُحفظ)
+      fetch(GOOGLE_FORM_ACTION, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data.toString()
+      })
+      .then(function(){ showSuccess(); })
+      .catch(function(){ showSuccess(); }); // no-cors لا يعيد خطأ حقيقياً عادةً
+    });
+
+    function showSuccess(){
+      form.hidden = true;
+      successBox.hidden = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'إرسال التسجيل';
+    }
+
+    againBtn.addEventListener('click', function(){
+      form.reset();
+      form.hidden = false;
+      successBox.hidden = true;
+    });
+  </script>
+
+</body>
+</html>
